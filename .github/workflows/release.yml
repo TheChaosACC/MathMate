@@ -4,6 +4,13 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+    inputs:
+      publish_marketplace:
+        description: Publish this version to the Visual Studio Marketplace
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -30,6 +37,7 @@ jobs:
         run: npm run package:vsix
 
       - name: Publish GitHub release
+        if: ${{ github.event_name == 'push' }}
         uses: softprops/action-gh-release@v2
         with:
           name: MathMate ${{ github.ref_name }}
@@ -37,9 +45,9 @@ jobs:
           files: "*.vsix"
 
       - name: Publish to Visual Studio Marketplace
-        if: ${{ env.VSCE_PAT != '' }}
+        if: ${{ env.VSCE_PAT != '' && (github.event_name == 'push' || inputs.publish_marketplace == true) }}
         run: npx vsce publish --pat "$VSCE_PAT"
 
       - name: Explain Marketplace publishing setup
-        if: ${{ env.VSCE_PAT == '' }}
+        if: ${{ env.VSCE_PAT == '' && (github.event_name == 'push' || inputs.publish_marketplace == true) }}
         run: echo "Marketplace publishing skipped. Add a VSCE_PAT Actions secret, then rerun this workflow."

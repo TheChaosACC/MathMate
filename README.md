@@ -35,4 +35,4 @@ Settings are available under **MathMate**:
 
 ## Publishing releases
 
-Push a version tag such as `v0.0.1` to trigger the GitHub Actions release workflow. It builds and attaches the `.vsix` package to a GitHub Release. To also publish to the Visual Studio Marketplace, create a Marketplace Personal Access Token and add it to the GitHub repository as the Actions secret `VSCE_PAT`; the workflow uses the publisher ID `TheChaosACC`. Never commit the token to the repository.
+Push a version tag such as `v0.0.1` to trigger the GitHub Actions release workflow. It builds and attaches the `.vsix` package to a GitHub Release. To also publish to the Visual Studio Marketplace, create a Marketplace Personal Access Token and add it to the GitHub repository as the Actions secret `VSCE_PAT`; the workflow uses the publisher ID `TheChaosACC`. Then run the workflow manually with **Publish this version to the Visual Studio Marketplace** enabled. Never commit the token to the repository.
