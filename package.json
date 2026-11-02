@@ -3,8 +3,16 @@
   "displayName": "MathMate",
   "description": "Inline math symbols, calculation, and linear equation solving for VS Code.",
   "version": "0.0.1",
-  "publisher": "local-mathmate",
+  "publisher": "TheChaosACC",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TheChaosACC/MathMate.git"
+  },
+  "homepage": "https://github.com/TheChaosACC/MathMate#readme",
+  "bugs": {
+    "url": "https://github.com/TheChaosACC/MathMate/issues"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -51,8 +59,14 @@
         },
         "mathmate.angleUnit": {
           "type": "string",
-          "enum": ["degrees", "radians"],
-          "enumDescriptions": ["Use degrees for trig inputs and inverse-trig outputs.", "Use radians for trig inputs and inverse-trig outputs."],
+          "enum": [
+            "degrees",
+            "radians"
+          ],
+          "enumDescriptions": [
+            "Use degrees for trig inputs and inverse-trig outputs.",
+            "Use radians for trig inputs and inverse-trig outputs."
+          ],
           "default": "degrees",
           "description": "Angle unit for trigonometric functions."
         }
@@ -62,11 +76,13 @@
   "scripts": {
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "package:vsix": "vsce package",
     "vscode:prepublish": "npm run compile"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
     "@types/vscode": "^1.90.0",
+    "@vscode/vsce": "^4.1.0",
     "typescript": "^5.5.0"
   }
 }
