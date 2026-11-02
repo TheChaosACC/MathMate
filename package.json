@@ -1,0 +1,72 @@
+{
+  "name": "mathmate-vscode",
+  "displayName": "MathMate",
+  "description": "Inline math symbols, calculation, and linear equation solving for VS Code.",
+  "version": "0.0.1",
+  "publisher": "local-mathmate",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:latex",
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mathmate.calculate",
+        "title": "MathMate: Calculate or Solve Current Math"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "mathmate.calculate",
+        "key": "ctrl+alt+m",
+        "mac": "cmd+alt+m",
+        "when": "editorTextFocus && (editorLangId == latex || editorLangId == markdown)"
+      },
+      {
+        "command": "mathmate.finishEquation",
+        "key": "enter",
+        "when": "editorTextFocus && (editorLangId == latex || editorLangId == markdown)"
+      }
+    ],
+    "configuration": {
+      "title": "MathMate",
+      "properties": {
+        "mathmate.autoReplaceSymbols": {
+          "type": "boolean",
+          "default": true,
+          "description": "Convert typed pi and LaTeX symbol commands to Unicode while editing math."
+        },
+        "mathmate.inlineResults": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show a Tab-accepting inline result for a math expression or linear equation in a math line."
+        },
+        "mathmate.angleUnit": {
+          "type": "string",
+          "enum": ["degrees", "radians"],
+          "enumDescriptions": ["Use degrees for trig inputs and inverse-trig outputs.", "Use radians for trig inputs and inverse-trig outputs."],
+          "default": "degrees",
+          "description": "Angle unit for trigonometric functions."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.5.0"
+  }
+}
